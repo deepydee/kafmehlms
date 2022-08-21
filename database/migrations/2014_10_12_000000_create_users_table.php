@@ -20,6 +20,8 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->enum('user_role', ['admin', 'teacher', 'student'])->default('student');
+            $table->string('avatar')->nullable();
+            $table->dateTime('last_seen');
             $table->rememberToken();
             $table->timestamps();
         });
