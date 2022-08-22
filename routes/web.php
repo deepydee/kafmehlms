@@ -23,6 +23,9 @@ Route::redirect('/', 'dashboard');
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', \App\Http\Livewire\Dashboard::class)->name('dashboard');
     Route::get('/profile', \App\Http\Livewire\Profile::class)->name('profile');
+    Route::get('/users', \App\Http\Livewire\Users::class)->name('users');
+    Route::get('/courses', \App\Http\Livewire\Courses::class)->name('courses');
+    Route::get('/tests', \App\Http\Livewire\Tests::class)->name('tests');
 
     Route::get('/logout', function () {
         Auth::logout();
