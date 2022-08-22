@@ -28,6 +28,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/tests', \App\Http\Livewire\Tests::class)->name('tests');
 
     Route::get('/logout', function () {
+        $user = Auth::user();
+        $user->last_seen = now();
+        $user->save();
         Auth::logout();
         return redirect()->route('auth.login');
     });

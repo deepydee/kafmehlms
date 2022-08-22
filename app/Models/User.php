@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -26,13 +27,19 @@ class User extends Authenticatable
         'last_seen'
     ];
 
+    const ROLES = [
+        'admin' => 'Администратор',
+        'teacher' => 'Преподаватель',
+        'student' => 'Студент',
+    ];
+
     /**
      * The attributes that should be hidden for serialization.
      *
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
+        // 'password',
         'remember_token',
     ];
 
@@ -44,4 +51,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getRuPostDate()
+    {
+        $formatter = new \IntlDateFormatter('ru_RU', \IntlDateFormatter::FULL,
+                         \IntlDateFormatter::FULL);
+        $formatter->setPattern('d MMM y HH:mm:ss');
+        return $formatter->format(new \DateTime($this->last_seen));
+    }
+
+    public function avatarUrl()
+    {
+        return $this->avatar
+        ? Storage::disk('avatars')->url($this->avatar)
+        : 'https://www.gravatar.com/avatar/'.md5(strtolower(trim($this->email)));
+    }
 }

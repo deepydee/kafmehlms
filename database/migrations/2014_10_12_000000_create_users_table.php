@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('password');
             $table->enum('user_role', ['admin', 'teacher', 'student'])->default('student');
             $table->string('avatar')->nullable();
-            $table->dateTime('last_seen');
+            $table->timestamp('last_seen')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

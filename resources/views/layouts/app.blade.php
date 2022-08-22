@@ -64,7 +64,7 @@
                 <a href="{{ route('profile') }}" class="flex-shrink-0 group block">
                   <div class="flex items-center">
                     <div>
-                      <img class="inline-block h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="">
+                      <img class="inline-block h-10 w-10 rounded-full" src="{{ auth()->user()->avatarUrl() }}">
                     </div>
                     <div class="ml-3">
                       <p class="text-base font-medium text-gray-700 group-hover:text-gray-900">
@@ -127,7 +127,7 @@
             <a href="{{ route('profile') }}" class="flex-shrink-0 w-full group block">
               <div class="flex items-center">
                 <div>
-                  <img class="inline-block h-9 w-9 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="">
+                  <img class="inline-block h-9 w-9 rounded-full" src="{{ auth()->user()->avatarUrl() }}">
                 </div>
                 <div class="ml-3">
                   <p class="text-sm font-medium text-gray-700 group-hover:text-gray-900">
@@ -153,6 +153,9 @@
         </div>
         <main class="flex-1">
           <div class="py-6">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+              <h1 class="text-2xl font-semibold text-gray-900">{{ $head }}</h1>
+            </div>
             {{ $slot }}
           </div>
         </main>

@@ -6,5 +6,5 @@ use Livewire\Component;
 
 class Courses extends Component
 {
-    
+
 }
