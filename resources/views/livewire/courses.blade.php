@@ -67,7 +67,7 @@
                         </x-input.group>
                         
                         <x-input.group class="sm:border-t sm:pt-5" label="Начало курса" for="start_date" :error="$errors->first('editing.start_date')">
-                            <x-input.date wire:model='editing.start_date' name="start_date" id="start_date" placeholder="MM/DD/YYYY"/>
+                            <x-input.text wire:model='editing.start_date' name="start_date" id="start_date" placeholder="MM/DD/YYYY"/>
                         </x-input.group>
     
                         <x-input.group for="course_image" label="Обложка" :error="$errors->first('editing.course_image')" class="flex items-center">
@@ -90,7 +90,7 @@
             
                 <x-slot name="footer">
                     <div class="space-x-1">
-                        <x-button.secondary>Отмена</x-button.secondary>
+                        <x-button.secondary wire:click='cancel'>Отмена</x-button.secondary>
                         <x-button.primary type='submit'>Сохранить</x-button.primary>
                     </div>
                 </x-slot>

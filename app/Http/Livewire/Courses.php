@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Course;
+use Illuminate\Support\Facades\Gate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -58,8 +59,14 @@ class Courses extends Component
         $this->showEditModal = false;
     }
 
+    public function cancel()
+    {
+        $this->showEditModal = false;
+    }
+
     public function render()
     {
+        Gate::allowIf(fn ($user) => $user->user_role === 'admin' || $user->user_role === 'teacher');
         return view('livewire.courses', [
             'courses' => Course::all(),
         ]);

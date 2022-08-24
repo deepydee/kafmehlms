@@ -6,6 +6,8 @@ use App\Http\Livewire\DataTable\WithBulkActions;
 use App\Http\Livewire\DataTable\WithPerPagePagination;
 use App\Http\Livewire\DataTable\WithSorting;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -57,9 +59,15 @@ class Users extends Component
         $this->editing->password = Hash::make($this->editing->password);
         $this->editing->save();
 
+        $folder = date('Y-m-d');
         $this->upload && $this->editing->update([
-            'avatar' => $this->upload->store('/', 'avatars')
+            'avatar' => $this->upload->store("/$folder", 'avatars')
         ]);
+        $this->showEditModal = false;
+    }
+
+    public function cancel()
+    {
         $this->showEditModal = false;
     }
 
@@ -68,7 +76,7 @@ class Users extends Component
         if ($this->selectAll) {
             $this->selectPageRows();
         }
-
+        Gate::allowIf(fn ($user) => $user->user_role === 'admin');
         return view('livewire.users', [
             'users' => User::all(),
         ]);

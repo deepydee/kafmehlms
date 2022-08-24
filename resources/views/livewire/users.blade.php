@@ -118,7 +118,7 @@
         
             <x-slot name="footer">
                 <div class="space-x-1">
-                    <x-button.secondary>Отмена</x-button.secondary>
+                    <x-button.secondary wire:click='cancel'>Отмена</x-button.secondary>
                     <x-button.primary type='submit'>Сохранить</x-button.primary>
                 </div>
             </x-slot>
