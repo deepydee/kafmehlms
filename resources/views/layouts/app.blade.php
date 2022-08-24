@@ -70,8 +70,8 @@
                       <p class="text-base font-medium text-gray-700 group-hover:text-gray-900">
                         {{ auth()->user()->username }}
                       </p>
-                      <p class="text-sm font-medium text-gray-500 group-hover:text-gray-700">
-                        Профиль
+                      <p class="text-xs font-medium text-gray-500 group-hover:text-gray-700">
+                        {{ \App\Models\USER::ROLES[auth()->user()->user_role] }}
                       </p>
                     </div>
                   </div>
@@ -134,7 +134,7 @@
                     {{ auth()->user()->username }}
                   </p>
                   <p class="text-xs font-medium text-gray-500 group-hover:text-gray-700">
-                    Профиль
+                    {{ \App\Models\USER::ROLES[auth()->user()->user_role] }}
                   </p>
                 </div>
               </div>

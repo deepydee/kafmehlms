@@ -98,10 +98,10 @@
                         </x-input.select>
                     </x-input.group>
 
-                    <x-input.group for="avatar" label="Аватар" :error="$errors->first('editing.avatar')" class="flex items-center">
-                      @if ($editing->avatar)
+                    <x-input.group for="avatar" label="Аватар" :error="$errors->first('upload')" class="flex items-center">
+                      @if ($upload)
                         <div class="h-10 w-10 flex-shrink-0">
-                          <img class="h-10 w-10 rounded-full" src="{{ $editing->avatar->temporaryUrl() }}" alt="">
+                          <img class="h-10 w-10 rounded-full" src="{{ $upload->temporaryUrl() }}" alt="">
                         </div>
                       @else
                         <div class="h-10 w-10 flex-shrink-0">
@@ -109,7 +109,7 @@
                         </div>
                       @endif
                      
-                      <x-input.file-upload wire:model='editing.avatar' id="avatar" />
+                      <x-input.file-upload wire:model='upload' id="avatar" />
                       
                     </x-input.group>
 

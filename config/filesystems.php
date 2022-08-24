@@ -43,6 +43,14 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
+        
+        'thumbs' => [
+            'driver' => 'local',
+            'root' => storage_path('app/thumbs'),
+            'url' => env('APP_URL').'/thumbs',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
 
         'public' => [
             'driver' => 'local',
@@ -80,6 +88,7 @@ return [
     'links' => [
         // public_path('storage') => storage_path('app/public'),
         public_path('avatars') => storage_path('app/avatars'),
+        public_path('thumbs') => storage_path('app/thumbs'),
     ],
 
 ];

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Support\Facades\Storage;
 
 class Course extends Model
 {
@@ -23,6 +24,13 @@ class Course extends Model
         'active',
     ];
 
+    const COURSES = [
+        'teormex' => 'Теоретическая механика',
+        'sopromat' => 'Сопротивление матералов',
+        'mex' => 'Механика',
+        'stroimex' => 'Строительная механика',
+    ];
+
     public function teachers()
     {
         return $this->hasMany(Teacher::class);
@@ -31,6 +39,13 @@ class Course extends Model
     public function students()
     {
         return $this->hasMany(Student::class);
+    }
+
+    public function getThumbUrl()
+    {
+        return $this->course_image
+        ? Storage::disk('thumbs')->url($this->course_image)
+        : '#';
     }
 
     public function sluggable(): array

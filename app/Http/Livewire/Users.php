@@ -17,7 +17,7 @@ class Users extends Component
     public $showEditModal = false;
     public $showDeleteModal = false;
     public User $editing;
-    public $fuck = '';
+    public $upload;
 
     public function rules()
     {
@@ -28,7 +28,7 @@ class Users extends Component
             'editing.user_role' => 'required|in:'.collect(User::ROLES)
                 ->keys()
                 ->implode(','),
-            'editing.avatar' => 'nullable|image|max:1024',
+            'upload' => 'nullable|image|max:1024',
         ];
     }
 
@@ -56,9 +56,9 @@ class Users extends Component
         $this->validate();
         $this->editing->password = Hash::make($this->editing->password);
         $this->editing->save();
-        
-        $this->editing->avatar && $this->user->update([
-            'avatar' => $this->editing->avatar->store('/', 'avatars')
+
+        $this->upload && $this->editing->update([
+            'avatar' => $this->upload->store('/', 'avatars')
         ]);
         $this->showEditModal = false;
     }
