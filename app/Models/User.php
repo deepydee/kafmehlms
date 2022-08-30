@@ -52,6 +52,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function getUserInfo()
+    {
+        if ($this->user_role == 'teacher') {
+           return Teacher::where('user_id', $this->id)->first();
+        } elseif ($this->user_role == 'student') {
+           return 'STUDENT';
+        }
+    }
+
     public function getRuPostDate()
     {
         $formatter = new \IntlDateFormatter('ru_RU', \IntlDateFormatter::FULL,

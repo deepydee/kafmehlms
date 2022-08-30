@@ -20,6 +20,12 @@ class Teacher extends Model
         'cathedra',
     ];
 
+    const POSITIONS = [
+        'assistant' => 'Ассистент',
+        'docent' => 'Доцент',
+        'professor' => 'Профессор',
+    ];
+
     public function courses()
     {
         return $this->belongsToMany(Course::class);

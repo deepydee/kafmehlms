@@ -52,6 +52,7 @@
 
                 <x-table.cell>
                     <x-button.link wire:click='edit({{ $user->id }})'>Редактировать</x-button.link>
+                    <x-button.link wire:click='delete({{ $user->id }})'>Удалить</x-button.link>
                 </x-table.cell>
             </x-table.row>
         @empty
@@ -97,6 +98,36 @@
                             @endforeach
                         </x-input.select>
                     </x-input.group>
+
+                    @if ($editing->user_role == 'teacher')
+
+                    <x-input.group for="teacher_position" label="Должность" :error="$errors->first('teacher.position')">
+                      <x-input.select wire:model='teacher.position' id="teacher_position">
+                          @foreach (App\Models\Teacher::POSITIONS as $value => $label)
+                              <option value="{{$value}}">{{$label}}</option>
+                          @endforeach
+                      </x-input.select>
+                    </x-input.group>
+
+                    <x-input.group for="teacher_cathedra" label="Кафедра" :error="$errors->first('teacher.cathedra')">
+                        <x-input.text wire:model='teacher.cathedra' id="teacher_cathedra" />
+                    </x-input.group>
+
+                    @elseif ($editing->user_role == 'student')
+
+                      <x-input.group for="student_course" label="Курс" :error="$errors->first('student.course')">
+                          <x-input.text wire:model='student.course' id="student_course" />
+                      </x-input.group>
+
+                      <x-input.group for="student_faculty" label="Факультет" :error="$errors->first('student.faculty')">
+                          <x-input.text wire:model='student.faculty' id="student_faculty" />
+                      </x-input.group>
+
+                      <x-input.group for="student_group" label="Группа" :error="$errors->first('student.group')">
+                          <x-input.text wire:model='student.group' id="student_group" />
+                      </x-input.group>
+
+                    @endif
 
                     <x-input.group for="avatar" label="Аватар" :error="$errors->first('upload')" class="flex items-center">
                       @if ($upload)

@@ -15,6 +15,19 @@
                     <x-input.text wire:model='user.username' name="username" id="username" autocomplete="username"/>
                 </x-input.group>
 
+                @if (auth()->user()->user_role == 'teacher')
+                    
+                    <p>Должность: {{ auth()->user()->getUserInfo() }}</p>
+                    <p>Кафедра</p>
+
+                @elseif (auth()->user()->user_role == 'student')
+                    
+                    <p>Курс: </p>
+                    <p>Факультет: </p>
+                    <p>Группа: </p>
+
+                @endif
+
                 <x-input.group class="sm:border-t sm:pt-5" label="Аватар" for="photo" :error="$errors->first('upload')">
                     <x-input.avatar wire:model='upload' id="photo">
                         <span class="h-12 w-12 rounded-full overflow-hidden bg-gray-100">

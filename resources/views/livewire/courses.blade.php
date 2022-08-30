@@ -65,6 +65,14 @@
                         <x-input.group for="description" label="Описание курса" :error="$errors->first('editing.description')">
                             <x-input.textarea wire:model='editing.description' id="description"/>
                         </x-input.group>
+
+                        {{-- <x-input.group for="teachers" label="Предмет" :error="$errors->first('teachers')">
+                            <x-input.select wire:model='teachers' id="teachers">
+                                @foreach (App\Models\Course::COURSES as $value => $label)
+                                    <option value="{{$value}}">{{$label}}</option>
+                                @endforeach
+                            </x-input.select>
+                        </x-input.group> --}}
                         
                         <x-input.group class="sm:border-t sm:pt-5" label="Начало курса" for="start_date" :error="$errors->first('editing.start_date')">
                             <x-input.text wire:model='editing.start_date' name="start_date" id="start_date" placeholder="MM/DD/YYYY"/>

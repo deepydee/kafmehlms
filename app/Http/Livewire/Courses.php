@@ -55,6 +55,8 @@ class Courses extends Component
         $this->upload && $this->editing->update([
             'course_image' => $this->upload->store('/', 'thumbs')
         ]);
+
+        $this->editing->teachers()->sync();
         
         $this->showEditModal = false;
     }

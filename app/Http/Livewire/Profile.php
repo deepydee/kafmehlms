@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Student;
+use App\Models\Teacher;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -13,6 +15,8 @@ class Profile extends Component
     use WithFileUploads;
     
     public User $user;
+    public Teacher $teacher;
+    public Student $student;
     public $upload;
 
     protected $rules = [
